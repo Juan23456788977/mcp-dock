@@ -48,13 +48,13 @@
 
 ## 🏗 System Architecture / Arquitectura del Sistema
 
-\`\`\`mermaid
+```mermaid
 graph TD
     A[Browser / Next.js Client] -->|HTTP / SSE| B(Node.js Express Proxy)
     B <-->|stdio| C{Local MCP Server}
     A <-->|State Management| D[Zustand Store]
     C -->|JSON Schema| B
-\`\`\`
+```
 
 ---
 
