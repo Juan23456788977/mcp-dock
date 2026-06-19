@@ -42,8 +42,8 @@ export const useMCPStore = create<MCPState>((set, get) => ({
         activeServerId: id
       }));
 
-      // Llamada HTTP al Proxy
-      const res = await fetch('http://localhost:4000/api/connect', {
+      const proxyUrl = process.env.NEXT_PUBLIC_PROXY_URL || 'http://localhost:4000';
+      const res = await fetch(\`\${proxyUrl}/api/connect\`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ serverId: id, command, args })
@@ -71,7 +71,8 @@ export const useMCPStore = create<MCPState>((set, get) => ({
 
   fetchTools: async (serverId) => {
     try {
-      const res = await fetch(`http://localhost:4000/api/tools/${serverId}`, {
+      const proxyUrl = process.env.NEXT_PUBLIC_PROXY_URL || 'http://localhost:4000';
+      const res = await fetch(`${proxyUrl}/api/tools/${serverId}`, {
         method: 'POST'
       });
       if (!res.ok) throw new Error("Fallo al obtener herramientas");

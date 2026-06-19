@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: '*' })); // Permitir a la web (Vercel) hablar con localhost
 app.use(express.json());
 
 const PORT = process.env.PROXY_PORT || 4000;
